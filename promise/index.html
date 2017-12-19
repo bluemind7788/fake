@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript" src="./index1.js"></script>
+	</head>
+	<body>
+		<script type="text/javascript">
+			new Promise(function(resolve) {
+				console.log(111)
+				setTimeout(function() {
+					resolve(222)
+				}, 2000)
+			}).then(function(val) {
+				console.log(val)
+			}).then(function(val) {
+				console.log(val)
+			})
+		</script>
+	</body>
+</html>
