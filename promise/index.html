@@ -1,19 +1,51 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<script type="text/javascript" src="./index1.js"></script>
+		<script type="text/javascript" src="./index3.js"></script>
 	</head>
 	<body>
 		<script type="text/javascript">
 			new Promise(function(resolve) {
-				console.log(111)
 				setTimeout(function() {
-					resolve(222)
+					resolve('a')
 				}, 2000)
 			}).then(function(val) {
-				console.log(val)
+				console.log(val+'b')
+				return val+'b'
 			}).then(function(val) {
-				console.log(val)
+				return new Promise(function(resolve) {
+					setTimeout(function() {
+						console.log(val+'c')
+						resolve(val+'c')
+					}, 2000)
+				})
+			}).then(function(val) {
+				console.log(val+'d')
+				return val+'d'
+			})
+
+			var ps = [new Promise(function(resolve) {
+				setTimeout(function() {
+					console.log(111)
+					resolve(111)
+				}, 2000)
+			}), new Promise(function(resolve) {
+				setTimeout(function() {
+					console.log(222)
+					resolve(222)
+				}, 3000)
+			}), new Promise(function(resolve) {
+				setTimeout(function() {
+					console.log(333)
+					resolve(333)
+				}, 1000)
+			})]
+
+			Promise.all(ps).then(function(val) {
+				console.log('all result is ' + val)
+			})
+			Promise.race(ps).then(function(val) {
+				console.log('race result is ' + val)
 			})
 		</script>
 	</body>

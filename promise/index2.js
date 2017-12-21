@@ -1,4 +1,4 @@
-// 异步链式调用
+// 同步、异步链式调用
 function Promise(resolver) {
 	var promise = this
 	promise._resolves = []
@@ -13,11 +13,19 @@ function Promise(resolver) {
 }
 
 Promise.prototype.then = function(onFulfilled) {
+	var promise = this
 	return new Promise(function(resolve) {
 
 		function handle(val) {
 			var ret = typeof onFulfilled == 'function' && onFulfilled(val) || val
-			resolve(ret)
+			if(typeof ret['then'] === 'function') {
+				// 返回了一个promise对象
+				ret.then(function(value) {
+					resolve(value)
+				})
+			} else {
+				resolve(ret)
+			}
 		}
 
 		promise._resolves.push(handle)
