@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript" src="./index1.js"></script>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var node = createElement('div', {class: 'main', style: 'color: red'}, 
+				[createElement('div', {class: 'main', style: 'color: red'}), createTextNode('aaa')])
+
+			document.body.appendChild(node.render())
+		</script>
+	</body>
+</html>
