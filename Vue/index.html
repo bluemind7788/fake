@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript" src="./index1.js"></script>
+	</head>
+	<body>
+		<div id="main" v-text="name"></div>
+		<script type="text/javascript">
+			var ins = new Vue({
+				el: '#main',
+				data: {
+					name: 'Tom'
+				}
+			})
+		</script>
+	</body>
+</html>
